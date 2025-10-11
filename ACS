@@ -1,0 +1,7 @@
+$service = Get-Service -Name 'AdtServer'
+if ($service.Status -eq 'Stopped') {
+    Start-Service -Name 'AdtServer'
+    Write-EventLog -LogName Application -Source "SCOM AutoFix" -EntryType Information -Message "ACS Collector service restarted automatically."
+}
+
+%windir%\"Recovery Task"\ACS.ps1
